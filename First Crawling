@@ -1,0 +1,29 @@
+library(rvest)
+
+
+url='https://slickdeals.net/computer-deals/?page='
+
+page=1:6
+pages=paste0(url, page, sep='')
+
+extract = function(page_url) {
+  html <- read_html(url)
+  a <- html %>% html_nodes(".gridCategory.removeHidden")
+
+  b <- a %>% html_nodes(".itemStore")
+  c <- as.character(b)
+  d <- gsub('<span class=\"itemStore\">',"",c)
+  seller <- gsub('</span>',"",d)
+
+  #f <- a %>% html_nodes(".priceLine") 가격도 넣으려했으나 결측값들이 존재해서 매칭이 안되어 실패.
+  #g <- f %>% html_text()
+  #h <- trimws(gsub("\n*", "", g))
+
+  i <- a %>% html_nodes(".itemTitle")
+  product <- i %>% html_text()
+
+  result = data.frame("Dealer"=o,"Product"=j)
+  return (result)
+}
+mat <- extract(pages[1])
+for(i in 2:length(page) ) mat <- rbind(mat, extract(pages[i]))
