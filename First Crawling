@@ -1,5 +1,6 @@
 #슬릭딜이라는 각종제품할인 소식을 올려주는 해외 사이트에서 컴퓨터부품 카테고리의 1p~6p 까지의 제품과 판매자(판매사이트)이름을 크롤링하는 코드
-
+#가격도 넣으려 했으나 예제와 달리 각 제품마다 찾고자하는 요소가 모두 떨어져있고 가격이 적히지 않은것들이 존재해 크롤링한 가격과 제품을 매칭시키는데
+#어려움이 있음
 library(rvest)
 
 url='https://slickdeals.net/computer-deals/?page='
@@ -16,7 +17,7 @@ extract = function(page_url) {
   d <- gsub('<span class=\"itemStore\">',"",c)
   seller <- gsub('</span>',"",d)
 
-  #f <- a %>% html_nodes(".priceLine") 가격도 넣으려했으나 결측값들이 존재해서 매칭이 안되어 실패.
+  #f <- a %>% html_nodes(".priceLine") #가격크롤링 코드
   #g <- f %>% html_text()
   #h <- trimws(gsub("\n*", "", g))
 
