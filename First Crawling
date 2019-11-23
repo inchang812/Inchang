@@ -1,5 +1,6 @@
-library(rvest)
+#슬릭딜이라는 각종제품할인 소식을 올려주는 해외 사이트에서 컴퓨터부품 카테고리의 1p~6p 까지의 제품과 판매자(판매사이트)이름을 크롤링하는 코드
 
+library(rvest)
 
 url='https://slickdeals.net/computer-deals/?page='
 
