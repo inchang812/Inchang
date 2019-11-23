@@ -11,21 +11,22 @@ pages=paste0(url, page, sep='')
 extract = function(page_url) {
   html <- read_html(url)
   a <- html %>% html_nodes(".gridCategory.removeHidden")
-
+  
   b <- a %>% html_nodes(".itemStore")
   c <- as.character(b)
   d <- gsub('<span class=\"itemStore\">',"",c)
   seller <- gsub('</span>',"",d)
-
+  
   #f <- a %>% html_nodes(".priceLine") #가격크롤링 코드
   #g <- f %>% html_text()
   #h <- trimws(gsub("\n*", "", g))
-
+  
   i <- a %>% html_nodes(".itemTitle")
   product <- i %>% html_text()
-
-  result = data.frame("Dealer"=o,"Product"=j)
+  
+  result = data.frame("Seller"=seller,"Product"=product)
   return (result)
 }
 mat <- extract(pages[1])
 for(i in 2:length(page) ) mat <- rbind(mat, extract(pages[i]))
+mat
